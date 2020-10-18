@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Ali.Helper
+namespace Ali.Helper.World
 {
     public class LinearLoopSpawner : MonoBehaviour
     {

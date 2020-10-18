@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Ali.Helper
+namespace Ali.Helper.UI
 {
     [ExecuteInEditMode]
     public class GradientRawImage : MonoBehaviour
