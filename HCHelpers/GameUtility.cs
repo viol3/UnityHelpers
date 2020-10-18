@@ -50,7 +50,8 @@ namespace Ali.Helper
             }
             return KeyCode.None;
         }
-
+		
+		// Agents keep following until it approaches, can work in a coroutine.
         public static IEnumerator AgentFollowTarget(NavMeshAgent agent, Transform target, float minDistance)
         {
             while (DistanceXZ(target.position, agent.transform.position) > minDistance)
@@ -83,14 +84,13 @@ namespace Ali.Helper
 
         public static float DirectionToAngle(Vector2 dir)
         {
-            float result = Mathf.Atan2(dir.y, dir.x) * 180 / Mathf.PI;
-            return -result + 90f;
+            return Mathf.Atan2(dir.y, dir.x) * 180 / Mathf.PI;
         }
 
         public static float GetAngleFromTwoPoints(Vector3 p1, Vector3 p2)
         {
-            float result = Mathf.Atan2(p2.z - p1.z, p2.x - p1.x) * 180 / Mathf.PI;
-            return -result + 90f;
+			return Mathf.Atan2(p2.z - p1.z, p2.x - p1.x) * 180 / Mathf.PI;
+
         }
 
         public static Vector3 RadianToVector3(float radian)
@@ -103,6 +103,9 @@ namespace Ali.Helper
             return RadianToVector3(degree * Mathf.Deg2Rad);
         }
 
+
+		//Util method for idle games. 
+		//For example : 12.500 represents as 12.5K
         public static string FormatFloatToReadableString(float value)
         {
             float number = value;
