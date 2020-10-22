@@ -50,6 +50,11 @@ namespace Ali.Helper
             }
             return KeyCode.None;
         }
+
+        public static string GetDetailedVector3String(Vector3 vector3)
+        {
+            return vector3.x + " " + vector3.y + " " + vector3.z;
+        }
 		
 		// Agents keep following until it approaches, can work in a coroutine.
         public static IEnumerator AgentFollowTarget(NavMeshAgent agent, Transform target, float minDistance)
