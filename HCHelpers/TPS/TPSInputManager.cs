@@ -15,7 +15,6 @@ namespace Ali.Helper.TPS
             LeanTouch.OnFingerUp += LeanTouch_OnFingerUp;
             LeanTouch.OnFingerUpdate += LeanTouch_OnFingerSet;
         }
-
         private void LeanTouch_OnFingerDown(LeanFinger obj)
         {
 
@@ -26,11 +25,16 @@ namespace Ali.Helper.TPS
             _tpsCharacter.SetInput(Vector3.zero);
         }
 
-
-
         private void LeanTouch_OnFingerSet(LeanFinger obj)
         {
             _tpsCharacter.SetInput(obj.SwipeScaledDelta.normalized);
+        }
+
+        private void OnDestroy()
+        {
+            LeanTouch.OnFingerDown -= LeanTouch_OnFingerDown;
+            LeanTouch.OnFingerUp -= LeanTouch_OnFingerUp;
+            LeanTouch.OnFingerUpdate -= LeanTouch_OnFingerSet;
         }
     }
 }
