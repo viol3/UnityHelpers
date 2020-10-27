@@ -7,36 +7,25 @@ namespace Ali.Helper.TPS
 {
     public class TPSCharacter : MonoBehaviour
     {
-        [SerializeField] private TPSCharacterAnimator _animator;
         [SerializeField] private float _moveSpeed;
         [SerializeField] private bool _mapLimited;
         [SerializeField] private Vector3 _minMapLimit;
         [SerializeField] private Vector3 _maxMapLimit;
 
-
         private bool _moveEnabled = true;
         private Vector2 _input;
         private Rigidbody _rigidbody;
-
-        private float _counter = 0f;
-
-        public event Action<Collider> OnTriggerTouchedEnter;
-        public event Action<Collision> OnCollisionTouchedEnter;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
         }
-        // Update is called once per frame
+
         void FixedUpdate()
         {
             UpdateVelocity();
-            UpdateAnimation();
-            UpdateRotation();
             ClampPosition();
         }
-
-
 
         void UpdateVelocity()
         {
@@ -53,26 +42,6 @@ namespace Ali.Helper.TPS
 
         }
 
-        void UpdateAnimation()
-        {
-            if (_rigidbody.velocity.sqrMagnitude < 0.05f)
-            {
-                _animator.Idle();
-            }
-            else
-            {
-                _animator.Walk();
-            }
-        }
-
-        void UpdateRotation()
-        {
-            if (_input.sqrMagnitude > 0.01f && _moveEnabled)
-            {
-                _animator.transform.eulerAngles = new Vector3(0f, GameUtility.DirectionToAngle(_input), 0f);
-            }
-        }
-
         void ClampPosition()
         {
             if (_mapLimited)
@@ -81,9 +50,9 @@ namespace Ali.Helper.TPS
             }
         }
 
-        public Vector3 GetDirection()
+        public Vector3 GetVelocity()
         {
-            return _animator.transform.forward;
+            return _rigidbody.velocity;
         }
 
         public void SetMoveActive(bool value)
@@ -96,24 +65,5 @@ namespace Ali.Helper.TPS
             _input = input;
         }
 
-        public void SetAnimation(string paramName, bool value)
-        {
-            _animator.SetAnimationParameter(paramName, value);
-        }
-
-        public void SetAnimationTrigger(string paramName)
-        {
-            _animator.SetAnimationTriggerParameter(paramName);
-        }
-
-        public void OnTriggerEnter(Collider other)
-        {
-            OnTriggerTouchedEnter?.Invoke(other);
-        }
-
-        public void OnCollisionEnter(Collision other)
-        {
-            OnCollisionTouchedEnter?.Invoke(other);
-        }
     }
 }
