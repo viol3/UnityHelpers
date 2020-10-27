@@ -8,7 +8,9 @@ namespace Ali.Helper.TPS
     {
         [SerializeField] private bool _smooth;
         [SerializeField] private float _smoothSpeed;
-        [SerializeField] private Vector3 _followAxes;
+        [SerializeField] private bool _followX;
+        [SerializeField] private bool _followY;
+        [SerializeField] private bool _followZ;
         [SerializeField] private Transform _target;
 
         private Vector3 _offset;
@@ -26,10 +28,22 @@ namespace Ali.Helper.TPS
             }
             if (_target)
             {
-                Vector3 followPos = _target.position + _offset;
-                followPos.x *= _followAxes.x;
-                followPos.y *= _followAxes.y;
-                followPos.z *= _followAxes.z;
+                Vector3 followPos = transform.position;
+                if(_followX)
+                {
+                    followPos.x = _target.position.x + _offset.x;
+                }
+
+                if (_followY)
+                {
+                    followPos.y = _target.position.y + _offset.y;
+                }
+
+                if (_followZ)
+                {
+                    followPos.z = _target.position.z + _offset.z;
+                }
+
                 if (_smooth)
                 {
                     transform.position = Vector3.Lerp(transform.position, followPos, _smoothSpeed * Time.deltaTime);
