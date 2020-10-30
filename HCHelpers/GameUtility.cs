@@ -10,7 +10,6 @@ namespace Ali.Helper
 {
     public class GameUtility
     {
-
         public static Vector3 GetLookAtEulerAngles(Vector3 source, Vector3 target)
         {
             Quaternion lookAtAngle = Quaternion.LookRotation(target - source, Vector3.up);
