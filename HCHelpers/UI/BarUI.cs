@@ -12,16 +12,15 @@ namespace Ali.Helper.UI
         [SerializeField] private Image _barImage;
         [SerializeField] private Gradient _gradient;
         [SerializeField] private bool _hideWhileEmpty = false;
-        [SerializeField] private bool _isWorldCanvas = true;
         Tweener barTween;
 
         private Transform _target;
         private void Awake()
         {
-            if (_isWorldCanvas)
-            {
-                transform.SetParent(GameObject.Find("WorldCanvas").transform);
-            }
+            //if (_isWorldCanvas)
+            //{
+            //    transform.SetParent(GameObject.Find("WorldCanvas").transform);
+            //}
 
             if (_hideWhileEmpty)
             {
