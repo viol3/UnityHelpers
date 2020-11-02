@@ -10,6 +10,11 @@ namespace Ali.Helper
 {
     public class GameUtility
     {
+        public static Vector3 GetLookAtEulerAngles(Vector3 source, Vector3 target)
+        {
+            Quaternion lookAtAngle = Quaternion.LookRotation(target - source, Vector3.up);
+            return lookAtAngle.eulerAngles;
+        }
         public static bool ApproximatelyColor(Color color1, Color color2, int threshold = 1)
         {
             int r1 = (int)(color1.r * 255f);
