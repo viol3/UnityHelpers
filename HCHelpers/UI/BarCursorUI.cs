@@ -13,6 +13,7 @@ namespace Ali.Helper.UI
 
         private RectTransform _rectTransform;
         private Tweener _moveTween;
+        private float _ratio = 0;
         private void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
@@ -36,6 +37,7 @@ namespace Ali.Helper.UI
 
         public void SetRatio(float newRatio)
         {
+            _ratio = newRatio;
             float newAxesValue = _min + (_max - _min) * newRatio;
             if (_moveTween != null)
             {
@@ -49,6 +51,11 @@ namespace Ali.Helper.UI
             {
                 _rectTransform.anchoredPosition = new Vector2(_rectTransform.anchoredPosition.x, newAxesValue);
             }
+        }
+
+        public float GetRatio()
+        {
+            return _ratio;
         }
     }
 }
