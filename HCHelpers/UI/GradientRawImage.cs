@@ -14,17 +14,13 @@ namespace Ali.Helper.UI
         private Texture2D backgroundTexture;
         private RawImage _image;
 
-        private void OnValidate()
+
+        void UpdateImage()
         {
             _image = GetComponent<RawImage>();
             backgroundTexture = new Texture2D(1, 2);
             backgroundTexture.wrapMode = TextureWrapMode.Clamp;
             backgroundTexture.filterMode = FilterMode.Bilinear;
-            SetColors(_topColor, _bottomColor);
-        }
-
-        void UpdateImage()
-        {
             backgroundTexture.SetPixels(new Color[] { _bottomColor, _topColor });
             backgroundTexture.Apply();
             _image.texture = backgroundTexture;
