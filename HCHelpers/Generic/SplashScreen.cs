@@ -1,4 +1,5 @@
 ﻿//using GameAnalyticsSDK;
+using GameAnalyticsSDK;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,8 +14,8 @@ namespace Ali.Helper
         {
             Application.targetFrameRate = 60;
             yield return new WaitForSeconds(0.1f);
-            //Facebook.Unity.FB.Init();
-            //GameAnalytics.Initialize();
+            Facebook.Unity.FB.Init();
+            GameAnalytics.Initialize();
             yield return new WaitForSeconds(0.2f);
             SceneManager.LoadScene("Main");
         }
