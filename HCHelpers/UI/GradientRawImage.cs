@@ -20,14 +20,32 @@ namespace Ali.Helper.UI
             backgroundTexture = new Texture2D(1, 2);
             backgroundTexture.wrapMode = TextureWrapMode.Clamp;
             backgroundTexture.filterMode = FilterMode.Bilinear;
-            SetColor(_bottomColor, _topColor);
+            SetColors(_topColor, _bottomColor);
         }
 
-        public void SetColor(Color color1, Color color2)
+        void UpdateImage()
         {
-            backgroundTexture.SetPixels(new Color[] { color1, color2 });
+            backgroundTexture.SetPixels(new Color[] { _bottomColor, _topColor });
             backgroundTexture.Apply();
             _image.texture = backgroundTexture;
         }
+
+        public void SetColors(Color topColor, Color bottomColor)
+        {
+            _topColor = topColor;
+            _bottomColor = bottomColor;
+            UpdateImage();
+        }
+
+        public Color GetTopColor()
+        {
+            return _topColor;
+        }
+
+        public Color GetBottomColor()
+        {
+            return _bottomColor;
+        }
+
     }
 }

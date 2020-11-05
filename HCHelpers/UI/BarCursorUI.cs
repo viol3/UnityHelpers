@@ -20,6 +20,7 @@ namespace Ali.Helper.UI
         }
         public void SetRatio(float newRatio, float speed)
         {
+            _ratio = newRatio;
             float newAxesValue = _min + (_max - _min) * newRatio;
             if (_moveTween != null)
             {
