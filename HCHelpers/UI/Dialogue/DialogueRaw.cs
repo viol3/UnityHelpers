@@ -31,5 +31,10 @@ namespace Ali.Helper.UI.Dialogue
             _interacted = true;
         }
 
+        private void OnDestroy()
+        {
+            _arrowButton.transform.DOKill();
+        }
+
     }
 }

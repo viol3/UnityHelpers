@@ -51,9 +51,19 @@ namespace Ali.Helper.UI.Dialogue
             DisableAllPanels();
         }
 
+        public void SetContentFontSize(int fontSize)
+        {
+            _currentDialogue.SetContentFontSize(fontSize);
+        }
+
         public bool IsQuestionAnswerCorrect()
         {
             return _questionDialogue.IsAnswerCorrect();
+        }
+
+        public int GetChoiceIndex()
+        {
+            return _questionDialogue.GetChoicedIndex();
         }
 
         void DisableAllPanels()

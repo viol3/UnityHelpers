@@ -12,6 +12,7 @@ namespace Ali.Helper.UI.Dialogue
         [SerializeField] private DialogueChoice[] _choices;
 
         private int _correctAnswerIndex = 0;
+        private int _choicedIndex = 0;
         private bool _answeredCorrect = false;
 
         private void Awake()
@@ -25,6 +26,7 @@ namespace Ali.Helper.UI.Dialogue
         private void DialogueQuestion_OnClick(int choiceIndex)
         {
             _interacted = true;
+            _choicedIndex = choiceIndex;
             _answeredCorrect = _correctAnswerIndex == choiceIndex;
         }
 
@@ -39,6 +41,11 @@ namespace Ali.Helper.UI.Dialogue
         public void SetCorrectAnswer(int index)
         {
             _correctAnswerIndex = index;
+        }
+
+        public int GetChoicedIndex()
+        {
+            return _choicedIndex;
         }
 
         public bool IsAnswerCorrect()

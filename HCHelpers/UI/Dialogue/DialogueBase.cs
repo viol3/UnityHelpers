@@ -52,6 +52,11 @@ namespace Ali.Helper.UI.Dialogue
         {
             _contentText.text = text;
         }
+
+        public void SetContentFontSize(int fontSize)
+        {
+            _contentText.fontSize = fontSize;
+        }
         public abstract IEnumerator Show();
         public abstract IEnumerator Hide();
     }
