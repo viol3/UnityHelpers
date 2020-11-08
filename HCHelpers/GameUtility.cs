@@ -10,11 +10,15 @@ namespace Ali.Helper
 {
     public class GameUtility
     {
+        public static void Print(string message)
+        {
+            Debug.Log(message);
+        }
+
         public static float GetAspectRatio()
         {
             return (float)Screen.width / Screen.height;
         }
-
 
         public static Vector3 GetLookAtEulerAngles(Vector3 source, Vector3 target)
         {
