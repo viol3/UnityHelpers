@@ -224,6 +224,13 @@ namespace Ali.Helper
             image.color = c;
         }
 
+        public static void ChangeAlphaMaskableGraphic(MaskableGraphic image, float alpha)
+        {
+            Color c = image.color;
+            c.a = alpha;
+            image.color = c;
+        }
+
         public static void ChangeAlphaText(Text text, float alpha)
         {
             Color c = text.color;
