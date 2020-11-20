@@ -9,13 +9,14 @@ public class WorldCharacter : MonoBehaviour, IWorldCharacter
 {
     [SerializeField] private Transform _modelTransform;
     [SerializeField] private float _rotateSpeed = 100f;
-    private IWorldCharacterAnimator _animator;
+    private WorldCharacterAnimator _animator;
     private Rigidbody _rigidbody;
+    private bool _rotateEnabled = true;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _animator = GetComponent<IWorldCharacterAnimator>();
+        _animator = GetComponent<WorldCharacterAnimator>();
     }
 
     public void ProcessVelocity(Vector3 velocity)
@@ -24,16 +25,34 @@ public class WorldCharacter : MonoBehaviour, IWorldCharacter
         Vector3 eulerAngles = GameUtility.GetLookAtEulerAngles(Vector3.zero, velocity);
         eulerAngles.x = _modelTransform.eulerAngles.x;
         eulerAngles.z = _modelTransform.eulerAngles.z;
-        _modelTransform.DORotate(eulerAngles, _rotateSpeed).SetSpeedBased();
+        if(_rotateEnabled)
+        {
+            _modelTransform.DORotate(eulerAngles, _rotateSpeed).SetSpeedBased();
+        }
+    }
+
+    public void SetAnimationParameterBool(string parameterName, bool value)
+    {
+        if(_animator != null)
+        {
+            _animator.SetBool(parameterName, value);
+        }
     }
 
     public void PlayAnimationState(string stateName)
     {
-        if(_animator != null)
+        if (_animator != null)
         {
             _animator.PlayAnimationState(stateName);
         }
     }
 
-
+    public void SetRotationEnabled(bool value)
+    {
+        _rotateEnabled = value;
+        if(!value)
+        {
+            _modelTransform.DOKill();
+        }
+    }
 }

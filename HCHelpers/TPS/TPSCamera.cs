@@ -18,7 +18,7 @@ namespace Ali.Helper.TPS
 
         private void Start()
         {
-            //_offset = transform.position - _target.position;
+            _offset = transform.position - _target.position;
         }
         void Update()
         {

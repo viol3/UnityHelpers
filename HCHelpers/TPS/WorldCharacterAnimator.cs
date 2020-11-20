@@ -9,4 +9,9 @@ public class WorldCharacterAnimator : MonoBehaviour, IWorldCharacterAnimator
     {
         _animator.Play(stateName);
     }
+
+    public void SetBool(string parameterName, bool value)
+    {
+        _animator.SetBool(parameterName, value);
+    }
 }
