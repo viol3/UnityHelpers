@@ -20,6 +20,16 @@ namespace Ali.Helper
             return (float)Screen.width / Screen.height;
         }
 
+        public static Vector2 GetCanvasPositionFromWorldPosition(Vector3 worldPos, RectTransform canvasRect)
+        {
+            Vector2 viewportPosition = Camera.main.WorldToViewportPoint(worldPos);
+            Vector2 worldObjectScreenPos = new Vector2(
+            ((viewportPosition.x * canvasRect.sizeDelta.x) - (canvasRect.sizeDelta.x * 0.5f)),
+            ((viewportPosition.y * canvasRect.sizeDelta.y) - (canvasRect.sizeDelta.y * 0.5f)));
+
+            return worldObjectScreenPos;
+        }
+
         public static Vector3 GetLookAtEulerAngles(Vector3 source, Vector3 target)
         {
             Quaternion lookAtAngle = Quaternion.LookRotation(target - source, Vector3.up);
