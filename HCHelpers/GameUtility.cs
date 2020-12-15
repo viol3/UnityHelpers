@@ -20,6 +20,11 @@ namespace Ali.Helper
             return (float)Screen.width / Screen.height;
         }
 
+        public static int[] GetNonRepeatingArray(int start, int count)
+        {
+            return Enumerable.Range(start, count).OrderBy(X => Random.Range(start, start + count)).ToArray();
+        }
+
         public static Vector2 GetCanvasPositionFromWorldPosition(Vector3 worldPos, RectTransform canvasRect)
         {
             Vector2 viewportPosition = Camera.main.WorldToViewportPoint(worldPos);
