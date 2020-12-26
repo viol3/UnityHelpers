@@ -27,6 +27,14 @@ namespace Ali.Helper.UI
             _smoothTween = DOTween.To(() => _points, x => _points = x, _targetPoints, _speed).SetSpeedBased().OnUpdate(UpdateText);
         }
 
+        public void SetPointsInstantly(int points)
+        {
+            _smoothTween?.Kill();
+            _targetPoints = points;
+            _points = points;
+            UpdateText();
+        }
+
         void UpdateText()
         {
             if (_textComponent)
