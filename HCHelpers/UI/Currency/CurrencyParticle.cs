@@ -8,11 +8,12 @@ namespace Ali.Helper.UI
 {
     public class CurrencyParticle : MonoBehaviour
     {
-
         private Coroutine _travelCo;
         private RectTransform _rectTransform;
         private Image _image;
         private Vector2 _targetPosition;
+
+        public event System.Action OnArrived;
         public void Init()
         {
             _rectTransform = (RectTransform)transform;
@@ -45,6 +46,7 @@ namespace Ali.Helper.UI
             yield return _rectTransform.DOAnchorPos(firstPosition + Random.insideUnitCircle * 100f, Random.Range(0.35f, 0.6f)).WaitForCompletion();
             yield return _rectTransform.DOAnchorPos(_targetPosition, Random.Range(0.35f, 0.6f)).SetEase(Ease.InSine).WaitForCompletion();
             _image.enabled = false;
+            OnArrived?.Invoke();
         }
     }
 }

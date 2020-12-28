@@ -18,6 +18,8 @@ namespace Ali.Helper.UI
 
         private CurrencyParticle[] _particles;
         private RectTransform _rectTransform;
+
+        public event System.Action OnParticleArrived;
         private void Start()
         {
             _rectTransform = (RectTransform)transform;
@@ -39,9 +41,15 @@ namespace Ali.Helper.UI
                 particleImage.raycastTarget = false;
                 _particles[i] = particleImage.gameObject.AddComponent<CurrencyParticle>();
                 _particles[i].Init();
+                _particles[i].OnArrived += CurrencyParticle_OnArrived;
                 RectTransform canvasRect = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
                 _particles[i].SetTargetPosition(new Vector2((canvasRect.sizeDelta.x / 2f) + _particleTargetOffset.x, (canvasRect.sizeDelta.y / 2f) + _particleTargetOffset.y));
             }
+        }
+
+        private void CurrencyParticle_OnArrived()
+        {
+            OnParticleArrived?.Invoke();
         }
 
         public void SetCurrencyAmount(int amount, bool instantly = false)

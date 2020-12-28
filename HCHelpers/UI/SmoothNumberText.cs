@@ -8,6 +8,7 @@ namespace Ali.Helper.UI
 {
     public class SmoothNumberText : MonoBehaviour
     {
+        [SerializeField] private bool _isSpeedBased = false;
         [SerializeField] private float _speed = 1f;
 
         private int _targetPoints = 0;
@@ -24,7 +25,7 @@ namespace Ali.Helper.UI
         {
             _targetPoints = points;
             _smoothTween?.Kill();
-            _smoothTween = DOTween.To(() => _points, x => _points = x, _targetPoints, _speed).SetSpeedBased().OnUpdate(UpdateText);
+            _smoothTween = DOTween.To(() => _points, x => _points = x, _targetPoints, _speed).SetSpeedBased(_isSpeedBased).OnUpdate(UpdateText);
         }
 
         public void SetPointsInstantly(int points)
