@@ -15,6 +15,15 @@ namespace Ali.Helper
             Debug.Log(message);
         }
 
+        public static Vector2 GetScreenRatioOfWorldPosition(Vector3 worldPosition)
+        {
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPosition);
+            Vector2 result = Vector2.zero;
+            result.x = screenPos.x / Screen.width;
+            result.y = screenPos.y / Screen.height;
+            return result;
+        }
+
         public static float GetAspectRatio()
         {
             return (float)Screen.width / Screen.height;
