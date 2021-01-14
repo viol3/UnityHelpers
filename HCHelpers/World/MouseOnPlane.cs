@@ -15,6 +15,16 @@ namespace Ali.Helper
 
         void Update()
         {
+            UpdateMouseEvents();
+        }
+
+        void UpdateMouseEvents()
+        {
+            if (!_activated)
+            {
+                return;
+            }
+
             if (_holdRequired && !Input.GetMouseButton(0))
             {
                 return;
@@ -22,10 +32,15 @@ namespace Ali.Helper
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, 50f, LayerMask.GetMask("MousePlane")) && hit.transform == _planeTransform)
+            if (Physics.Raycast(ray, out hit, 50f, LayerMask.GetMask(_planeLayerName)) && hit.transform == _planeTransform)
             {
                 OnMouseUpdate?.Invoke(hit.point);
             }
+        }
+
+        public void SetActive(bool value)
+        {
+            _activated = value;
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Ali.Helper
         [SerializeField] private MouseOnPlane _mouseOnPlane;
         [SerializeField] private float _distanceThreshold = 0.1f;
         [SerializeField] private int _vertexLimit = 50;
+        [SerializeField] private Vector3 _offsetPos;
 
         private Vector3 _lastPos;
         private bool _activated = false;
@@ -26,7 +27,6 @@ namespace Ali.Helper
             {
                 _lastPos = pos;
             }
-
             if(_lineRenderer.positionCount >= _vertexLimit || !_activated)
             {
                 return;
@@ -34,7 +34,7 @@ namespace Ali.Helper
             if (Vector3.Distance(_lastPos, pos) > _distanceThreshold)
             {
                 _lineRenderer.positionCount++;
-                _lineRenderer.SetPosition(_lineRenderer.positionCount - 1, pos);
+                _lineRenderer.SetPosition(_lineRenderer.positionCount - 1, pos + _offsetPos);
                 _lastPos = pos;
 
                 if(_lineRenderer.positionCount >= _vertexLimit)
