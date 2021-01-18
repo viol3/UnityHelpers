@@ -24,6 +24,19 @@ namespace Ali.Helper
             return result;
         }
 
+        public static int GetBSIndexByName(SkinnedMeshRenderer faceMeshRenderer, string bsName)
+        {
+            Mesh m = faceMeshRenderer.sharedMesh;
+            for (int i = 0; i < m.blendShapeCount; i++)
+            {
+                if (m.GetBlendShapeName(i).Equals(bsName))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
         public static float GetAspectRatio()
         {
             return (float)Screen.width / Screen.height;

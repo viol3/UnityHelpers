@@ -16,21 +16,8 @@ namespace Ali.Helper.World
 
         public void MoveBSValueTo(string bsName, float value, float duration)
         {
-            DOTween.To(() => _smr.GetBlendShapeWeight(GetBSIndexByName(bsName)), x => _smr.SetBlendShapeWeight(GetBSIndexByName(bsName), x), value, duration);
+            DOTween.To(() => _smr.GetBlendShapeWeight(GameUtility.GetBSIndexByName(_smr, bsName)), x => _smr.SetBlendShapeWeight(GameUtility.GetBSIndexByName(_smr, bsName), x), value, duration);
         }
-
-        int GetBSIndexByName(string bsName)
-        {
-            _smr = GetComponent<SkinnedMeshRenderer>();
-            Mesh m = _smr.sharedMesh;
-            for (int i = 0; i < m.blendShapeCount; i++)
-            {
-                if (m.GetBlendShapeName(i).Equals(bsName))
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
+        
     }
 }
