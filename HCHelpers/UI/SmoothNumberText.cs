@@ -40,7 +40,7 @@ namespace Ali.Helper.UI
         {
             if (_textComponent)
             {
-                _textComponent.text = _points.ToString();
+                _textComponent.text = GameUtility.FormatFloatToReadableString((float)_points);
             }
 
         }
