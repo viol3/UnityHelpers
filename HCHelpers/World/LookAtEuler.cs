@@ -7,7 +7,7 @@ namespace Ali.Helper.World
     public class LookAtEuler : MonoBehaviour
     {
 
-        private Transform _target;
+        [SerializeField] private Transform _target;
 
         private void Start()
         {

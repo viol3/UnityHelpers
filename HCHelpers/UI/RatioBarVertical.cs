@@ -10,10 +10,6 @@ namespace Ali.Helper.UI
         [SerializeField] private Text _percentText;
 
         private Image _image;
-        void Awake()
-        {
-            _image = GetComponent<Image>();
-        }
 
         // Update is called once per frame
         void Update()
@@ -21,9 +17,19 @@ namespace Ali.Helper.UI
             _percentText.text = "%" + (int)(_image.fillAmount * 100f);
         }
 
+        public void Init()
+        {
+            _image = GetComponent<Image>();
+        }
+
         public void SetRatio(float ratio)
         {
             _image.fillAmount = ratio;
+        }
+
+        public void SetColor(Color color)
+        {
+            _image.color = color;
         }
     }
 }

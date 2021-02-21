@@ -10,6 +10,45 @@ namespace Ali.Helper
 {
     public class GameUtility
     {
+
+        public static void PrintMatrix(int[,] matrix)
+        {
+            string result = "";
+            for (int i = matrix.GetLength(1) - 1; i >= 0; i--)
+            {
+                for (int j = 0; j < matrix.GetLength(0); j++)
+                {
+                    result += matrix[j, i] + " ";
+                }
+                result += "\r\n";
+            }
+            Debug.Log(result);
+        }
+
+        public static void FloodFillMatrix(int[,] mat, int x, int y, int prevV, int newV)
+        {
+            // Base cases 
+            if (x < 0 || x >= mat.GetLength(0) ||
+                y < 0 || y >= mat.GetLength(1))
+                return;
+
+            if (mat[x, y] != prevV)
+                return;
+
+            // Replace the color at (x, y) 
+            mat[x, y] = newV;
+
+            // Recur for north, 
+            // east, south and west 
+            FloodFillMatrix(mat, x + 1, y,
+                           prevV, newV);
+            FloodFillMatrix(mat, x - 1, y,
+                           prevV, newV);
+            FloodFillMatrix(mat, x, y + 1,
+                           prevV, newV);
+            FloodFillMatrix(mat, x, y - 1,
+                           prevV, newV);
+        }
         public static void Print(string message)
         {
             Debug.Log(message);

@@ -12,7 +12,7 @@ namespace Ali.Helper.World
 
         public bool Active { get => _active; set => _active = value; }
 
-        void LateUpdate()
+        void Update()
         {
             if (_active)
             {

@@ -10,6 +10,7 @@ namespace Ali.Helper.UI
     public class CountdownText : MonoBehaviour
     {
         [SerializeField] private int _startNumber = 3;
+        [SerializeField] private string _goText = "GO!";
         private Text _textComponent;
 
         private int _counter = 0;
@@ -40,7 +41,7 @@ namespace Ali.Helper.UI
             {
                 if (i == 0)
                 {
-                    _textComponent.text = "GO!";
+                    _textComponent.text = _goText;
                 }
                 else
                 {
