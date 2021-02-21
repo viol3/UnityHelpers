@@ -53,6 +53,20 @@ namespace Ali.Helper
         {
             Debug.Log(message);
         }
+		
+		public static Texture2D GetCameraTexture(Camera camera)
+        {
+            RenderTexture rt = new RenderTexture(Screen.width, Screen.height, 24);
+            camera.targetTexture = rt;
+            Texture2D texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+            camera.Render();
+            RenderTexture.active = rt;
+            texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+            texture.Apply();
+            camera.targetTexture = null;
+            RenderTexture.active = null;
+            return texture;
+        }
 
         public static Vector2 GetScreenRatioOfWorldPosition(Vector3 worldPosition)
         {
