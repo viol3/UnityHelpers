@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Ali.Helper.Audio
 {
-    public class AudioPool : MonoBehaviour
+    public class AudioPool : LocalSingleton<AudioPool>
     {
         [SerializeField] private int _poolCount = 5;
 

@@ -12,9 +12,12 @@ namespace Ali.Helper.UI
         [SerializeField] private Image _currencyIconImage;
         [SerializeField] private float _punchIconRate = 0.05f;
         [SerializeField] private float _punchTextRate = 0.1f;
+        [Space]
+        [SerializeField] private bool _particleEnabled = true;
         [SerializeField] private int _particleCount = 20;
         [SerializeField] private Vector3 _particleScale;
         [SerializeField] private Vector2 _particleTargetOffset;
+
 
         private CurrencyParticle[] _particles;
         private RectTransform _rectTransform;
@@ -28,6 +31,10 @@ namespace Ali.Helper.UI
 
         void InitParticles()
         {
+            if(!_particleEnabled)
+            {
+                return;
+            }
             _particles = new CurrencyParticle[_particleCount];
             for (int i = 0; i < _particles.Length; i++)
             {
@@ -80,6 +87,10 @@ namespace Ali.Helper.UI
 
         public void GenerateCurrencyParticles(Vector2 spawnPosition)
         {
+            if (!_particleEnabled)
+            {
+                return;
+            }
             for (int i = 0; i < _particleCount; i++)
             {
                 _particles[i].Travel(spawnPosition);
