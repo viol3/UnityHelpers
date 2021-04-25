@@ -85,5 +85,10 @@ namespace Ali.Helper.UI
         {
             transform.position = position;
         }
+
+        public float GetRatio()
+        {
+            return _barImage.fillAmount;
+        }
     }
 }
