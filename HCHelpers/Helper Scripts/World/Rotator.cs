@@ -13,5 +13,10 @@ namespace Ali.Helper.World
         {
             transform.Rotate(_rotateVelocity * Time.deltaTime, _rotateSpace);
         }
+
+        public void SetVelocity(Vector3 velocity)
+        {
+            _rotateVelocity = velocity;
+        }
     }
 }

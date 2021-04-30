@@ -58,7 +58,7 @@ namespace Ali.Helper
             _levelIndex = _globalLevelIndex;
             if (_levelIndex >= _levelPrefabs.Length)
             {
-                _levelIndex = GameUtility.RandomIntExcept(_levelPrefabs.Length, _levelIndex, 0, 1, 2, 3);
+                _levelIndex = GameUtility.RandomIntExcept(_levelPrefabs.Length, _levelIndex);
             }
 
         }
