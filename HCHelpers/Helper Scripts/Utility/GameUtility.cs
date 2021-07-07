@@ -93,6 +93,11 @@ namespace Ali.Helper
         {
             Debug.Log(message);
         }
+
+        public static float GetValueFromRatio(float ratio, float min, float max)
+        {
+            return min + (ratio * (max - min));
+        }
 		
 		public static Texture2D GetCameraTexture(Camera camera)
         {

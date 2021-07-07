@@ -10,10 +10,19 @@ namespace Ali.Helper.Runner
         [SerializeField] private Joystick _joystick;
         [SerializeField] private float _forwardSpeed = 10;
         [SerializeField] private float _strafeSpeed = 10;
+        [SerializeField] private bool _isEnabled = true;
 
         void Update()
         {
-            _runnerCharacter.Velocity = new Vector3(_joystick.Direction.x * _strafeSpeed, 0f, _forwardSpeed);
+            if(_isEnabled)
+            {
+                _runnerCharacter.ProcessVelocity(new Vector3(_joystick.Direction.x * _strafeSpeed, 0f, _forwardSpeed));
+            }
+        }
+
+        public void SetEnabled(bool value)
+        {
+            _isEnabled = value;
         }
     }
 }

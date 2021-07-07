@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Ali.Helper.TPS
 {
-    public interface IWorldCharacterAnimator
+    public abstract class CharacterBase : MonoBehaviour
     {
-        void PlayAnimationState(string stateName);
+        public abstract void ProcessVelocity(Vector3 velocity);
     }
 }
