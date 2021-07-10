@@ -18,11 +18,17 @@ namespace Ali.Helper.TPS
 
         private void Start()
         {
-            if(_target)
+            UpdateOffset();
+        }
+
+        public void UpdateOffset()
+        {
+            if (_target)
             {
                 _offset = transform.position - _target.position;
             }
         }
+
         void Update()
         {
             if(!_active)
