@@ -9,7 +9,7 @@ namespace Ali.Helper.Runner
     {
         [SerializeField] private float _speedMultiplier = 1f;
 
-        public event System.Action<float> OnSwerve;
+        public event System.Action<Vector2> OnSwerve;
         void Start()
         {
             LeanTouch.OnFingerUpdate += LeanTouch_OnFingerUpdate;
@@ -19,7 +19,7 @@ namespace Ali.Helper.Runner
         {
             if (Input.GetMouseButton(0))
             {
-                OnSwerve?.Invoke(finger.ScaledDelta.x * _speedMultiplier);
+                OnSwerve?.Invoke(finger.ScaledDelta * _speedMultiplier);
             }
         }
 
