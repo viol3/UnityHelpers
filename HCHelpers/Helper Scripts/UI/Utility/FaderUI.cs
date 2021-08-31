@@ -25,17 +25,17 @@ namespace Ali.Helper.UI
             }
         }
 
-        public IEnumerator CloseTheater()
+        public IEnumerator CloseTheater(float time = 0.25f)
         {
             faderImage.raycastTarget = true;
-            faderImage.DOFade(1f, fadeTime);
-            yield return new WaitForSeconds(fadeTime);
+            faderImage.DOFade(1f, time);
+            yield return new WaitForSeconds(time);
         }
 
-        public IEnumerator OpenTheater(float delay = 0f)
+        public IEnumerator OpenTheater(float time = 0.25f, float delay = 0f)
         {
-            faderImage.DOFade(0f, fadeTime).SetDelay(delay);
-            yield return new WaitForSeconds(fadeTime + delay);
+            faderImage.DOFade(0f, time).SetDelay(delay);
+            yield return new WaitForSeconds(time + delay);
             faderImage.raycastTarget = false;
         }
     }

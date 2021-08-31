@@ -47,7 +47,7 @@ namespace Ali.Helper.UI.Dialogue
         public IEnumerator HideCurrentDialogue()
         {
             yield return _currentDialogue.Hide();
-            _currentDialogue.Reset();
+            _currentDialogue.DialogueReset();
             DisableAllPanels();
         }
 
@@ -68,8 +68,14 @@ namespace Ali.Helper.UI.Dialogue
 
         void DisableAllPanels()
         {
-            _questionDialogue.gameObject.SetActive(false);
-            _rawDialogue.gameObject.SetActive(false);
+            if(_questionDialogue)
+            {
+                _questionDialogue.gameObject.SetActive(false);
+            }
+            if(_rawDialogue)
+            {
+                _rawDialogue.gameObject.SetActive(false);
+            }
         }
     }
 }

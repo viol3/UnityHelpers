@@ -17,5 +17,13 @@ public class BlendShapeAnimator : MonoBehaviour
         }
         tweener = DOTween.To(() => _renderer.GetBlendShapeWeight(blendShapeIndex), x => _renderer.SetBlendShapeWeight(blendShapeIndex, x), endValue, duration);
     }
-    
+
+    private void OnDestroy()
+    {
+        if (tweener != null)
+        {
+            tweener.Kill();
+        }
+    }
+
 }

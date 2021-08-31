@@ -36,7 +36,7 @@ namespace Ali.Helper.UI.Dialogue
         {
             _choicePanel.gameObject.SetActive(true);
             _choicePanel.localScale *= 0.5f;
-            _choicePanel.DOScale(transform.localScale * 2f, duration);
+            _choicePanel.DOScale(_choicePanel.localScale * 2f, duration).OnComplete(OnFirstScaleFinish);
         }
 
         public void Hide()
@@ -51,7 +51,32 @@ namespace Ali.Helper.UI.Dialogue
 
         void Bounce()
         {
-            _choicePanel.DOPunchScale(Vector3.one * 0.1f, 0.3f, 6);
+            StopAllCoroutines();
+            _choicePanel.DOKill(true);
+            _choicePanel.DOPunchScale(Vector3.one * 0.2f, 0.2f, 6);
+        }
+
+        void OnFirstScaleFinish()
+        {
+            StartCoroutine(ScaleLoopProcess());
+        }
+
+        IEnumerator ScaleLoopProcess()
+        {
+            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(_choiceIndex * 1f);
+            while(true)
+            {
+                _choicePanel.DOPunchScale(Vector3.one * 0.1f, 0.4f, 6);
+                yield return new WaitForSeconds(2f);
+                //yield return new WaitForSeconds(_choiceIndex * 1f);
+            }
+            
+        }
+
+        private void OnDestroy()
+        {
+            _choicePanel.DOKill();
         }
 
     }

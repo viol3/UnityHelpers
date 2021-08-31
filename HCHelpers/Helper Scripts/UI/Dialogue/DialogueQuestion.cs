@@ -72,9 +72,9 @@ namespace Ali.Helper.UI.Dialogue
             _questionPanel.transform.localScale = scale;
         }
 
-        public override void Reset()
+        public override void DialogueReset()
         {
-            base.Reset();
+            base.DialogueReset();
             for (int i = 0; i < _choices.Length; i++)
             {
                 _choices[i].Reset();

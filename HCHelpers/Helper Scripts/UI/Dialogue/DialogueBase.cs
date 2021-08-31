@@ -14,7 +14,7 @@ namespace Ali.Helper.UI.Dialogue
         protected bool _interacted = false;
         private Coroutine _animateContentTextCo;
 
-        public virtual void Reset()
+        public virtual void DialogueReset()
         {
             _interacted = false;
         }
